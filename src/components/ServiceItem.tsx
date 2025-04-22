@@ -1,7 +1,5 @@
-
 import WebConfig from "./WebConfig";  
-import { ServiceItemProps} from '../types/ServiceItemProps';
-
+import { ServiceItemProps} from "../types/Interfaces";
 
 const ServiceItem: React.FC<ServiceItemProps> = ({ 
   service, 
@@ -12,7 +10,6 @@ const ServiceItem: React.FC<ServiceItemProps> = ({
   pages,
   languages
  }) => {
-
 
   return (
     <div className="flex flex-col gap-2 bg-white p-6 rounded-xl shadow-md">

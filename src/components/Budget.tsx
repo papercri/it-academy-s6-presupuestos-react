@@ -1,8 +1,7 @@
+import ServiceItem from "./ServiceItem";
 import { useEffect, useState } from "react";
 import { services } from "../data/services";
-import { ServiceState } from "../types/Service";
-import ServiceItem from "./ServiceItem";
-
+import { ServiceState, HandleChangeEvent } from "../types/Interfaces";
 
 function Budget() {
     const [selectedServices, setSelectedServices] = useState<ServiceState>({
@@ -15,7 +14,6 @@ function Budget() {
     const [pages, setPages] = useState(0);
     const [languages, setLanguages] = useState(0);
 
-
     useEffect(() => {
       let newTotal = services.reduce((sum, service) => {
         return selectedServices[service.id] ? sum + service.price : sum;
@@ -26,11 +24,11 @@ function Budget() {
       setTotal(newTotal);
     }, [selectedServices, pages, languages]);
   
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const { name, checked } = e.target;
-      setSelectedServices((prev) => ({
-        ...prev,
-        [name]: checked,
+    
+    const handleChange = (e: HandleChangeEvent): void => {
+      setSelectedServices((i) => ({
+      ...i,
+      [e.target.name]: e.target.checked,
       }));
     };
 
