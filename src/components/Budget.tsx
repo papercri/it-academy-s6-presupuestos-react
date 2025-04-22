@@ -3,43 +3,54 @@ import { services } from "../data/services";
 import { ServiceState } from "../types/Service";
 import ServiceItem from "./ServiceItem";
 
+
 function Budget() {
-    const [selected, setSelected] = useState<ServiceState>({
+    const [selectedServices, setSelectedServices] = useState<ServiceState>({
       seo: false,
       ads: false,
       web: false,
     });
 
     const [total, setTotal] = useState(0);
+    const [pages, setPages] = useState(0);
+    const [languages, setLanguages] = useState(0);
 
 
     useEffect(() => {
-      const newTotal = services.reduce((sum, service) => {
-        return selected[service.id] ? sum + service.price : sum;
+      let newTotal = services.reduce((sum, service) => {
+        return selectedServices[service.id] ? sum + service.price : sum;
       }, 0);
+      if (selectedServices.web) {
+        newTotal += (pages + languages) * 30;
+      }
       setTotal(newTotal);
-    }, [selected]);
+    }, [selectedServices, pages, languages]);
   
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const { name, checked } = e.target;
-      setSelected((prev) => ({
+      setSelectedServices((prev) => ({
         ...prev,
         [name]: checked,
       }));
     };
 
     return (
-      <div className="min-h-screen bg-gray-100 flex items-center justify-center p-6">
+      <div className="min-h-screen bg-gray-100 flex items-start justify-center p-6">
       <div className="max-w-md w-full">
         <form className="space-y-3">
           {services.map((service) => (
             <ServiceItem
               key={service.id}
               service={service}
-              checked={selected[service.id]}
+              checked={selectedServices[service.id]}
               onChange={handleChange}
+              setPages={setPages} 
+              setLanguages={setLanguages} 
+              pages={pages}
+              languages={languages}
             />
           ))}
+        
         </form>
         <div className="mt-6 text-xl font-semibold text-selected text-right">
           Total price: {total} €

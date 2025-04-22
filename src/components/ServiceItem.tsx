@@ -1,32 +1,58 @@
-import { Service } from "../types/Service";
 
-type ServiceItemsProps = {
-  service: Service;
-  checked: boolean;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-};
+import WebConfig from "./WebConfig";  
+import { ServiceItemProps} from '../types/ServiceItemProps';
 
-export default function ServiceItem({ service, checked, onChange }: ServiceItemsProps) {
+
+const ServiceItem: React.FC<ServiceItemProps> = ({ 
+  service, 
+  checked, 
+  onChange,
+  setPages,
+  setLanguages,
+  pages,
+  languages
+ }) => {
+
+
   return (
-    <div className="flex items-center justify-between gap-2 bg-white p-6 rounded-xl shadow-md">
-      <div className="grid grid-cols-3 text-gray-800 gap-4  items-center">
-        <label htmlFor={service.id} className="flex flex-col gap-1 cursor-pointer col-span-2">
-          <span className="text-xl font-bold ">{service.name}</span>
-          <span className="text-sm text-gray-600">{service.description}</span>
-        </label>
-        <span className="text-2xl font-bold">{service.price} €</span>
+    <div className="flex flex-col gap-2 bg-white p-6 rounded-xl shadow-md">
+      <div className="flex flex-row items-center justify-between">
+        <div className="grid grid-cols-3 text-gray-800 gap-4  items-center">
+          <label htmlFor={service.id} className="flex flex-col gap-1 cursor-pointer col-span-2">
+            <span className="text-xl font-bold ">
+              {service.name}
+            </span>
+            <span className="text-sm text-gray-600">
+              {service.description}
+            </span>
+          </label>
+          <span className="text-2xl font-bold">
+            {service.price} €
+          </span>
+        </div>
+        <div className="flex items-center gap-1">
+          <input
+            type="checkbox"
+            id={service.id}
+            name={service.id}
+            checked={checked}
+            onChange={onChange}
+            className="form-checkbox "
+          />
+          <span className="text-gray-800 text-sm">Select</span>
+        </div>
       </div>
-      <div className="flex items-center gap-1">
-        <input
-          type="checkbox"
-          id={service.id}
-          name={service.id}
-          checked={checked}
-          onChange={onChange}
-          className="form-checkbox "
+      {checked && service.id === "web" && setPages && setLanguages && (
+        <WebConfig
+          pages={pages}
+          languages={languages}
+          onPagesChange={setPages}
+          onLanguagesChange={setLanguages}
         />
-        <span className="text-gray-800 text-sm">Select</span>
-      </div>
+      )}
     </div>
   );
 }
+
+
+export default ServiceItem;
