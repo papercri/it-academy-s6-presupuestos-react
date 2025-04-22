@@ -7,7 +7,7 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-playground.*
+_playground.*
 node_modules
 vscode
 .sass-cache
