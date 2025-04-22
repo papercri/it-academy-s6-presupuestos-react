@@ -4,7 +4,7 @@
 @import './assets/styles/css/global.css'; 
 
 @theme {
-    --color-cris: oklch(0.72 0.11 178);
+    --color-selected: oklch(0.72 0.11 178);
 
     --radius-radius: 20px;
 
@@ -55,7 +55,7 @@
     }
   
     .btn-outline {
-      @apply inline-block px-4 py-2 border border-blue-600 text-blue-600 rounded-md font-medium hover:bg-blue-600 hover:text-white transition duration-150 ease-in-out;
+      @apply inline-block px-4 py-2 border border-[var(--color-selected)] text-blue-600 rounded-md font-medium hover:bg-[var(--color-selected)] hover:text-white transition duration-150 ease-in-out;
     }
   
     .btn-secondary {
@@ -93,19 +93,22 @@
     }
   
     .form-input {
-      @apply w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500;
+      @apply w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-selected)] focus:border-[var(--color-selected)];
     }
   
     .form-textarea {
-      @apply w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500;
+      @apply w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm resize-none focus:outline-none focus:ring-2 focus:ring-[var(--color-selected)];
     }
   
     .form-select {
-      @apply w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500;
+      @apply w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-selected)];
     }
   
     .form-check {
       @apply flex items-center gap-2;
+    }
+    .form-checkbox{
+      @apply  accent-[var(--color-selected)] w-5 h-5 rounded focus:ring-2 focus:ring-[var(--color-selected)] mr-2 cursor-pointer  text-white
     }
   
     /* Layout estilo Bootstrap */

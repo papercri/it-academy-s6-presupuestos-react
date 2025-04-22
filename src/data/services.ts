@@ -1,4 +1,4 @@
-import { Service } from "../types/service";
+import { Service } from "../types/Service";
 
 export const services: Service[] = [
   { id: "seo", name: "Seo", description: "Programación de una campaña SEO", price: 300 },
