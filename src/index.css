@@ -47,8 +47,10 @@
   
   @layer components {
     /* Botones */
-    .btn {
-      @apply inline-block px-4 py-2 text-white bg-blue-600 rounded-md font-medium shadow hover:bg-blue-700 transition duration-150 ease-in-out;
+    .btn-home {
+      @apply inline-block mx-auto px-4 py-2 text-white bg-[var(--color-selected)] !border  border-white rounded-md text-3xl  hover:text-[var(--color-selected)]   hover:bg-white transition duration-150 ease-in-out;
+      width: fit-content;
+      block-size: fit-content;
     }
   
     .btn-outline {
@@ -67,7 +69,7 @@
       @apply inline-block px-4 py-2 bg-green-600 text-white rounded-md font-medium hover:bg-green-700 transition;
     }
     .btn-more-less{
-      @apply px-2 min-w-[25px] bg-gray-300 rounded-4xl hover:bg-selected transition cursor-pointer
+      @apply px-2 min-w-[25px] bg-gray-300 rounded-4xl hover:bg-selected transition cursor-pointer transition duration-150 ease-in-out;
     }
     /* Cards */
     .card {

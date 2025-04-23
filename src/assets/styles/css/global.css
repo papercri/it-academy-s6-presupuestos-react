@@ -23,15 +23,17 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-button, a {
+button, a, Link {
   cursor: pointer;
-  border: 0;
   outline: none;
   text-decoration: none;
+  width: fit-content;
 }
 
 ol, ul {
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 blockquote, q {

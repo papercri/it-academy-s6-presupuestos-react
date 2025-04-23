@@ -1,15 +1,13 @@
-import './assets/styles/css/app.css'
-import Header from './components/Header'
-import Budget from './components/Budget'
+import { Route, Routes } from 'react-router-dom'
+import HomePage from './pages/HomePage'
+import BudgetCalculator from './pages/BudgetCalculator'
 
 function App() {
-
   return (
-    <>
-      <Header></Header>
-      <Budget></Budget>
-    </>
+    <Routes>
+      <Route path="/" element={<HomePage/>} />
+      <Route path="/budget" element={<BudgetCalculator/>} />
+    </Routes>
   )
 }
-
 export default App

@@ -8,6 +8,10 @@ pnpm-debug.log*
 lerna-debug.log*
 
 _playground.*
+
+server
+
+_recycle
 node_modules
 vscode
 .sass-cache
