@@ -47,6 +47,7 @@ const ServiceItem: React.FC<ServiceItemProps> = ({
           onLanguagesChange={setLanguages}
         />
       )}
+     
     </div>
   );
 }

@@ -32,6 +32,45 @@ function Budget() {
       }));
     };
 
+    const [budgetName, setBudgetName] = useState('');
+    const [clientName, setClientName] = useState(''); 
+    
+    const [budgets, setBudgets] = useState<{ 
+      id: number; 
+      name: string; 
+      client: string; 
+      services: ServiceState; 
+      total: number; 
+    }[]>([]);
+
+    const handleSaveBudget = () =>  {
+      if (!budgetName || !clientName || total === 0) {
+        alert("Por favor, rellena todos los datos.");
+        return;
+      }
+
+      const newBudget = {
+        id: Date.now(),
+        name: budgetName,
+        client: clientName,
+        services: selectedServices, 
+        total: total,         
+      };
+    
+      setBudgets([...budgets, newBudget]);
+      setBudgetName("");
+      setClientName("");
+      setPages(0);
+      setLanguages(0);
+      setSelectedServices({
+        seo: false,
+        ads: false,
+        web: false,
+      });
+
+    };
+
+
     return (
       <div className="min-h-screen bg-gray-100 flex items-start justify-center p-6">
       <div className="max-w-md w-full">
@@ -48,12 +87,57 @@ function Budget() {
               languages={languages}
             />
           ))}
-        
+          <div className="mt-6">
+            <input
+              type="text"
+              placeholder="Nombre del presupuesto"
+              value={budgetName}
+              className="form-input mb-4"
+              onChange={(e) => setBudgetName(e.target.value)}
+            />
+            <br />
+            <input
+              type="text"
+              placeholder="Nombre del cliente/a"
+              value={clientName}
+              className="form-input"
+              onChange={(e) => setClientName(e.target.value)}
+            />
+          </div>
         </form>
-        <div className="mt-6 text-xl font-semibold text-selected text-right">
-          Total price: {total} €
+
+        <div className="mt-6">
+          <div className="mt-6 text-xl font-semibold text-selected text-right">
+            Total price: {total} €
+          </div>
+          <button onClick={handleSaveBudget} className="btn-outline text-selected hover:text-white">Guardar presupuesto</button>
         </div>
+
+        <div className="mt-6">
+          <h3 className="mt-3">Presupuestos guardados</h3>
+          <div>
+            {budgets.map((budget) => {
+              const selectedServiceNames = Object.entries(budget.services)
+              .filter(([ x , isChecked]) => isChecked)
+              .map(([serviceId]) => {
+                const service = services.find((i) => i.id === serviceId);
+                return service?.name || serviceId;
+              });
+              return (
+              <li key={budget.id} className="card mb-4 flex justify-between items-center gap-2 p-4 bg-white shadow-md rounded-xl">
+                <strong className="uppercase">{budget.name}</strong>
+                <span>Cliente: {budget.client}</span>  
+                <span>Servicios: {selectedServiceNames.join(", ")}</span> 
+                <strong>Total: {budget.total}€</strong>
+              </li>
+            );
+          })}
+          </div>
+        </div>
+        
       </div>
+
+      
     </div>
       );
     }
