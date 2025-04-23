@@ -44,3 +44,10 @@ export interface CounterProps {
   value: number;
   onChange: (value: number) => void;
 }
+
+export interface BudgetDataProps  {
+  budgetName: string;
+  setBudgetName: (value: string) => void;
+  clientName: string;
+  setClientName: (value: string) => void;
+};

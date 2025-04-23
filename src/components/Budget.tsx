@@ -1,7 +1,10 @@
-import ServiceItem from "./ServiceItem";
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import ServiceItem from "./ServiceItem";  
+import BudgetData from "./BudgetData";
 import { useEffect, useState } from "react";
 import { services } from "../data/services";
 import { ServiceState, HandleChangeEvent } from "../types/Interfaces";
+
 
 function Budget() {
     const [selectedServices, setSelectedServices] = useState<ServiceState>({
@@ -70,7 +73,6 @@ function Budget() {
 
     };
 
-
     return (
       <div className="min-h-screen bg-gray-100 flex items-start justify-center p-6">
       <div className="max-w-md w-full">
@@ -87,23 +89,12 @@ function Budget() {
               languages={languages}
             />
           ))}
-          <div className="mt-6">
-            <input
-              type="text"
-              placeholder="Nombre del presupuesto"
-              value={budgetName}
-              className="form-input mb-4"
-              onChange={(e) => setBudgetName(e.target.value)}
-            />
-            <br />
-            <input
-              type="text"
-              placeholder="Nombre del cliente/a"
-              value={clientName}
-              className="form-input"
-              onChange={(e) => setClientName(e.target.value)}
-            />
-          </div>
+          <BudgetData
+            budgetName={budgetName}
+            setBudgetName={setBudgetName}
+            clientName={clientName}
+            setClientName={setClientName}
+          />
         </form>
 
         <div className="mt-6">
