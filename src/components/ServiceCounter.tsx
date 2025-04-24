@@ -3,12 +3,16 @@ interface ServiceCounterProps {
   label: string;
   value: number;
   onChange: (value: number) => void;
+  infoButton?: React.ReactNode; 
 }
 
-  const ServiceCounter: React.FC<ServiceCounterProps> = ({ id, label, value, onChange }) => {
+  const ServiceCounter: React.FC<ServiceCounterProps> = ({ id, label, value, onChange, infoButton }) => {
     return (
       <div className="flex justify-between items-center">
-        <label htmlFor={id} className="form-label">{label}</label>
+        <label htmlFor={id} className="form-label">
+          {label}
+          {infoButton && infoButton}
+        </label>
         <div className="flex items-center gap-2">
           <button
             type="button"

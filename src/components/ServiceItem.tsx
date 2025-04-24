@@ -49,10 +49,6 @@ const ServiceItem: React.FC<ServiceItemProps> = ({
             className="form-checkbox justify-self-end"
           />
         </div>
-    
-         
-     
-     
       </div>
       {checked && service.id === "web" && setPages && setLanguages && (
         <ServiceItemDetail

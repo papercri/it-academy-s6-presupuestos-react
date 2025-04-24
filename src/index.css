@@ -63,6 +63,9 @@
     .btn-more-less{
       @apply px-2 min-w-[25px] bg-gray-300 rounded-4xl hover:bg-selected transition cursor-pointer transition duration-150 ease-in-out;
     }
+    .btn-info{
+      @apply text-selected opacity-100 hover:opacity-80 text-lg ml-2
+    }
     /* Cards */
     .card {
       @apply bg-white border border-gray-200 rounded-radius shadow p-5;
@@ -144,11 +147,11 @@
 
     /* Modals */
   .modal-overlay {
-    @apply fixed inset-0 bg-black/50 flex items-center justify-center z-50;
+    @apply fixed inset-0 bg-black/80 flex items-center justify-center z-50;
   }
 
   .modal {
-    @apply bg-white rounded-radius shadow-lg max-w-lg w-full p-6 relative;
+    @apply bg-white rounded-radius shadow-lg max-w-lg w-full p-6 relative text-center;
   }
 
   .modal-header {
