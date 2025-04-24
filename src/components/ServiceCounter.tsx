@@ -11,7 +11,7 @@ interface ServiceCounterProps {
       <div className="flex justify-between items-center">
         <label htmlFor={id} className="form-label">
           {label}
-          {infoButton && infoButton}
+          {infoButton}
         </label>
         <div className="flex items-center gap-2">
           <button

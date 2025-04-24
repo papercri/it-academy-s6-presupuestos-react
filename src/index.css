@@ -13,7 +13,7 @@
   
   @layer base {
     body {
-      @apply bg-white text-gray-900 font-roboto antialiased leading-relaxed;
+      @apply bg-gray-100  text-gray-900 font-roboto antialiased leading-relaxed;
     }
   
     h1 {
@@ -50,11 +50,11 @@
     }
   
     .btn-outline {
-      @apply inline-block px-2 py-1.5 border-3 border-[var(--color-selected)] text-blue-600 rounded-md font-medium hover:bg-[var(--color-selected)] hover:text-white transition duration-150 ease-in-out;
+      @apply inline-block px-2 py-1.5 border-3 border-[var(--color-selected)] text-[var(--color-selected)] rounded-lg font-medium hover:bg-[var(--color-selected)] hover:text-white transition duration-150 ease-in-out;
     }
   
     .btn-danger {
-      @apply inline-block px-4 py-2 bg-red-600 text-white rounded-md font-medium hover:bg-red-700 transition;
+      @apply inline-block px-2 py-1.5 border-3 border-red-600 bg-white text-red-600 rounded-lg font-medium hover:bg-red-600 hover:text-white transition;
     }
   
     .btn-success {

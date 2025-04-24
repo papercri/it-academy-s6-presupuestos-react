@@ -2,11 +2,10 @@
 
 import ServiceItem from "./ServiceItem";  
 import BudgetClientInput from "./BudgetClientInput";
-import ProgressBudget from "./ProgressBudget";  
 import { useEffect, useState } from "react";
 import { services } from "../data/services";
 import { ServiceState, Budget } from "../types/Interfaces";
-
+import { Link } from 'react-router-dom'
 
 function BudgetLayout() {
     const [selectedServices, setSelectedServices] = useState<ServiceState>({
@@ -20,7 +19,10 @@ function BudgetLayout() {
     const [languages, setLanguages] = useState(1);
     const [clientEmail, setClientEmail] = useState('');
     const [clientName, setClientName] = useState(''); 
-
+    const [budgets, setBudgets] = useState<Budget[]>(() => {
+      const stored = localStorage.getItem('budgets');
+      return stored ? JSON.parse(stored) : [];
+    });
     useEffect(() => {
       let newTotal = services.reduce((sum, service) => {
         return selectedServices[service.id] ? sum + service.price : sum;
@@ -44,7 +46,7 @@ function BudgetLayout() {
       }));
     };
 
-    const [budgets, setBudgets] = useState< Budget[]>([]);
+   
 
     const handleSaveBudget = (e: { preventDefault: () => void; }) =>  {
       e.preventDefault();
@@ -61,7 +63,10 @@ function BudgetLayout() {
         total: total,         
       };
     
-      setBudgets([...budgets, newBudget]);
+      const updatedBudgets = [...budgets, newBudget];
+      setBudgets(updatedBudgets);
+      localStorage.setItem('budgets', JSON.stringify(updatedBudgets));
+
       setClientEmail("");
       setClientName("");
       setPages(0);
@@ -73,14 +78,11 @@ function BudgetLayout() {
       });
 
     };
-    const handleDeleteBudget = (id: number) => {
-      const updatedBudgets = budgets.filter((budget) => budget.id !== id);
-      setBudgets(updatedBudgets);
-    };
-
+   
     return (
-      <div className="min-h-screen bg-gray-100 flex items-start justify-center p-6">
+      <div className=" flex items-start justify-center p-6">
       <div className="max-w-xl w-full">
+      <h3 className="my-6">Solicita tu presupuesto:</h3>
         <form className="space-y-3">
           {services.map((service) => (
             <ServiceItem
@@ -94,7 +96,7 @@ function BudgetLayout() {
               languages={languages}
             />
           ))}
-          <div className="my-10 text-xl font-semibold text-selected text-right">
+          <div className="my-6 text-xl font-semibold text-selected text-right">
             Total presupuesto: {total} €
           </div>
           <div className="card mb-4 flex justify-between items-center gap-2 p-4 bg-white shadow-md rounded-xl">
@@ -106,13 +108,11 @@ function BudgetLayout() {
             />
             <button onClick={handleSaveBudget} className="btn-outline text-selected hover:text-white text-nowrap">Solicitar presupuesto</button>
             </div>
-          
+           
         </form>
-        
-        <ProgressBudget 
-          budgets={budgets} 
-          handleDeleteBudget={handleDeleteBudget} 
-        />
+        {budgets.length > 0 && (
+        <Link to="/progress" className='btn-outline !block mx-auto mt-8'>Ver todos los presupuestos en curso</Link>
+        )}
       </div>
       
     </div>
