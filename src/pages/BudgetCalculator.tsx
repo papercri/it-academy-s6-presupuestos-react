@@ -1,12 +1,12 @@
 import '../assets/styles/css/budget.css'
 import Header from '../components/Header'
-import Budget from '../components/Budget'
+import BudgetLayout from '../components/BudgetLayout'
 
 function BudgetCalculator() {
   return (
     <>
         <Header></Header>
-        <Budget></Budget>
+        <BudgetLayout></BudgetLayout>
     </>
   )
 }

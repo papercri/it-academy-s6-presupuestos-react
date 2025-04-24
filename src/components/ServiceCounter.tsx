@@ -1,6 +1,11 @@
-import{ CounterProps } from "../types/Interfaces";
+interface ServiceCounterProps {
+  id: string;
+  label: string;
+  value: number;
+  onChange: (value: number) => void;
+}
 
-  const Counter: React.FC<CounterProps> = ({ id, label, value, onChange }) => {
+  const ServiceCounter: React.FC<ServiceCounterProps> = ({ id, label, value, onChange }) => {
     return (
       <div className="flex justify-between items-center">
         <label htmlFor={id} className="form-label">{label}</label>
@@ -31,5 +36,5 @@ import{ CounterProps } from "../types/Interfaces";
     );
   };
   
-  export default Counter;
+  export default ServiceCounter;
   
