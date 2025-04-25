@@ -85,7 +85,6 @@ export function handleSaveBudget({
   setBudgets(updatedBudgets);
   localStorage.setItem("budgets", JSON.stringify(updatedBudgets));
 
-
   setClientEmail("");
   setClientName("");
   setPages(0);

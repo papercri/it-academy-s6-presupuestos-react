@@ -14,7 +14,6 @@ interface ProgressBudgetProps {
 const ProgressBudget: React.FC<ProgressBudgetProps> = ({ budgets, handleDeleteBudget }) => {
     return (
     <div>
-     
       <div>
         {budgets.map((budget) => {
           const selectedServiceNames = Object.entries(budget.services)
@@ -25,9 +24,7 @@ const ProgressBudget: React.FC<ProgressBudgetProps> = ({ budgets, handleDeleteBu
           });
           return (
             <>
-              
               <div key={budget.id} className="card mb-4 flex justify-between items-center gap-2 p-4 bg-white shadow-md rounded-xl">
-            
                 <span><strong>Cliente:</strong><br/>{budget.client}</span> 
                 <span><strong>Email:</strong><br/>{budget.email}</span>  
                 <span><strong>Servicios:</strong><br/> {selectedServiceNames.join(", ")}</span> 

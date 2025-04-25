@@ -51,8 +51,6 @@ function BudgetLayout() {
     });
   };
   
-  
-
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>, field: 'name' | 'email') => {
     const value = e.target.value;
     if (field === 'name') {
@@ -78,12 +76,10 @@ function BudgetLayout() {
   }
 
   return (
-    <div className=" flex items-start justify-center p-6">
+    <main className=" flex items-start justify-center p-6">
       <div className="max-w-xl w-full">
         <h3 className="my-6">Solicita tu presupuesto:</h3>
-
         <Switch onToggle={handleToggleDiscount} />
-
         <form className="space-y-3">
           {services.map((service) => (
             <ServiceItem
@@ -149,7 +145,7 @@ function BudgetLayout() {
         <Link to="/progress" className='btn-outline !block mx-auto mt-8'>Ver todos los presupuestos en curso</Link>
         )}
       </div>
-    </div>
+    </main>
     );
   }
 
