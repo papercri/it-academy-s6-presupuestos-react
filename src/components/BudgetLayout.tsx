@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { services } from "../data/services";
 import { Budget, ServiceState } from "../types/Interfaces";
 import { Link } from 'react-router-dom'
-import { validateForm, calculateTotal, handleSaveBudget } from "../utils/budgetHelpers";
+import {  calculateTotal, validateForm, handleSaveBudget } from "../utils/budgetHelpers";
 
 function BudgetLayout() {
   const [selectedServices, setSelectedServices] = useState<ServiceState>({
@@ -67,11 +67,16 @@ function BudgetLayout() {
     );
     setErrors(newErrors);
   };
- 
 
   const handleToggleDiscount = (isChecked: boolean) => {
     setIsDiscountApplied(isChecked); 
   };
+
+  let webPrice = services[2].price;
+  if (selectedServices.web) {
+    webPrice += (pages + languages) * 30;
+  }
+
   return (
     <div className=" flex items-start justify-center p-6">
       <div className="max-w-xl w-full">
@@ -91,6 +96,7 @@ function BudgetLayout() {
               pages={pages}
               languages={languages}
               discount={isDiscountApplied}
+              webPrice={webPrice}
              
             />
             
@@ -121,10 +127,13 @@ function BudgetLayout() {
                     setClientName,
                     setClientEmail,
                     setPages,
+                    pages,
+                    languages,
                     setLanguages,
                     setSelectedServices,
                     setErrors,
-                    isDiscountApplied
+                    isDiscountApplied,
+                    webPrice
 
                   })
                 }

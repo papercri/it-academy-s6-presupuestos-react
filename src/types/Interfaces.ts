@@ -27,10 +27,15 @@ export interface SaveBudgetParams  {
   setClientEmail: (email: string) => void;
   setPages: (pages: number) => void;
   setLanguages: (languages: number) => void;
+  pages: number;
+  languages: number;
   setSelectedServices: (services: ServiceState) => void;
-  setErrors: (errors: { name?: string; email?: string; 
-  services?: string;
-
-}) => void;
-  
+  setErrors: (errors: {
+    name?: string;
+    email?: string;
+    services?: string;
+  }) => void;
+  isDiscountApplied: boolean;
+  webPrice: number;    
 }
+  

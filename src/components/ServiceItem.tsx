@@ -14,6 +14,7 @@ interface ServiceItemProps {
   pages: number;
   languages: number;
   discount: boolean;
+  webPrice: number; 
 }
 
 const ServiceItem: React.FC<ServiceItemProps> = ({ 
@@ -24,7 +25,8 @@ const ServiceItem: React.FC<ServiceItemProps> = ({
   setLanguages,
   pages,
   languages,
-  discount
+  discount,
+  webPrice
  }) => {
 
   return (
@@ -40,6 +42,16 @@ const ServiceItem: React.FC<ServiceItemProps> = ({
               {service.description}
             </span>
           </label>
+          {service.id === "web" ? (
+          <span className="text-2xl font-bold text-right">
+            {!discount && <span>{webPrice} €</span>}
+            {discount && <span>
+                <span className="line-through">{service.price}</span>
+                <span className=" text-selected font-bold"> €{(webPrice * 0.8).toFixed(0)} </span>
+                </span>
+            }
+          </span>
+          ) : (
           <span className="text-2xl font-bold text-right">
             {!discount && <span>{service.price} €</span>}
             {discount && <span>
@@ -48,6 +60,8 @@ const ServiceItem: React.FC<ServiceItemProps> = ({
                 </span>
             }
           </span>
+)}
+
           <input
             type="checkbox"
             id={service.id}

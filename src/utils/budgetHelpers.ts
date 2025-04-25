@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 import { Budget, ServiceState, SaveBudgetParams } from "../types/Interfaces";
-import { services } from "../data/services"; // Asegúrate de importar la lista de servicios
+import { services } from "../data/services"; 
 
 export const validateForm = (
   name: string,
@@ -35,11 +35,12 @@ export const calculateTotal = (
   let newTotal = services.reduce((sum, service) => {
     return selectedServices[service.id] ? sum + service.price : sum;
   }, 0);
+ 
   if (selectedServices.web) {
     newTotal += (pages + languages) * 30;
   }
   if (isDiscountApplied) {
-    newTotal = newTotal * 0.8; // Aplica un 20% de descuento si está activado
+    newTotal = newTotal * 0.8; 
   }
   return newTotal;
 };
@@ -54,6 +55,8 @@ export function handleSaveBudget({
   setBudgets,
   setClientName,
   setClientEmail,
+  pages,
+  languages,
   setPages,
   setLanguages,
   setSelectedServices,
@@ -67,7 +70,7 @@ export function handleSaveBudget({
 
   if (Object.keys(newErrors).length > 0) return;
 
-  // Asegúrate de pasar los servicios a la función calculateTotal
+ 
   const discountedTotal = calculateTotal(selectedServices, pages, languages, services, isDiscountApplied);
 
   const newBudget: Budget = {
@@ -82,7 +85,7 @@ export function handleSaveBudget({
   setBudgets(updatedBudgets);
   localStorage.setItem("budgets", JSON.stringify(updatedBudgets));
 
-  // Limpiar los valores después de guardar
+
   setClientEmail("");
   setClientName("");
   setPages(0);
