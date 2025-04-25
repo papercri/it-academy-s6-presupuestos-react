@@ -5,13 +5,12 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import {  Budget } from "../types/Interfaces";
 import { services } from "../data/services";
 
-
 interface ProgressBudgetProps {
   budgets: Budget[];
   handleDeleteBudget: (id: number) => void;
 }
 
-const ProgressBudget: React.FC<ProgressBudgetProps> = ({ budgets, handleDeleteBudget }) => {
+const ProgressBudgetItem: React.FC<ProgressBudgetProps> = ({ budgets, handleDeleteBudget }) => {
     return (
     <div>
       <div>
@@ -23,8 +22,7 @@ const ProgressBudget: React.FC<ProgressBudgetProps> = ({ budgets, handleDeleteBu
             return service?.name || serviceId;
           });
           return (
-            <>
-              <div key={budget.id} className="card mb-4 flex justify-between items-center gap-2 p-4 bg-white shadow-md rounded-xl">
+            <div key={budget.id} className="card mb-4 flex justify-between items-center gap-2 p-4 bg-white shadow-md rounded-xl">
                 <span><strong>Cliente:</strong><br/>{budget.client}</span> 
                 <span><strong>Email:</strong><br/>{budget.email}</span>  
                 <span><strong>Servicios:</strong><br/> {selectedServiceNames.join(", ")}</span> 
@@ -36,7 +34,6 @@ const ProgressBudget: React.FC<ProgressBudgetProps> = ({ budgets, handleDeleteBu
                   <FontAwesomeIcon icon={faXmark} />
                 </button>
             </div>
-          </>
         );
       })}
       </div>
@@ -44,4 +41,4 @@ const ProgressBudget: React.FC<ProgressBudgetProps> = ({ budgets, handleDeleteBu
   )
 }
 
-export default ProgressBudget
+export default ProgressBudgetItem

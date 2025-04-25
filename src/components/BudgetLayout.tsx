@@ -28,10 +28,13 @@ function BudgetLayout() {
   const [isDiscountApplied, setIsDiscountApplied] = useState(false);
   const [errors, setErrors] = useState<{ name?: string; email?: string; services?: string }>({});
 
+  //Función para calcular el total del presupuesto
 
   useEffect(() => {
    setTotal(calculateTotal(selectedServices, pages, languages, services, isDiscountApplied));
   }, [selectedServices, pages, languages, isDiscountApplied]);
+
+  //Función para manejar el cambio de los inputs de los servicios y validar el formulario
 
   interface HandleChangeEvent {
     target: {
@@ -50,7 +53,9 @@ function BudgetLayout() {
       return updatedServices;
     });
   };
-  
+
+//Función para manejar el cambio de los inputs del cliente y validar el formulario
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>, field: 'name' | 'email') => {
     const value = e.target.value;
     if (field === 'name') {
@@ -66,10 +71,12 @@ function BudgetLayout() {
     setErrors(newErrors);
   };
 
+//Función para manejar el cambio del switch y aplicar el descuento
   const handleToggleDiscount = (isChecked: boolean) => {
     setIsDiscountApplied(isChecked); 
   };
 
+//Precio del servicio Web dinamico
   let webPrice = services[2].price;
   if (selectedServices.web) {
     webPrice += (pages + languages) * 30;
@@ -130,7 +137,6 @@ function BudgetLayout() {
                     setErrors,
                     isDiscountApplied,
                     webPrice
-
                   })
                 }
                 className="btn-outline text-selected hover:text-white text-nowrap" >Solicitar presupuesto</button>

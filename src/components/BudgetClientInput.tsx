@@ -1,5 +1,5 @@
   /* eslint-disable @typescript-eslint/no-unused-vars */
-
+  
   interface BudgetClientInputProps  {
     clientEmail: string;
     setClientEmail: (value: string) => void;
@@ -11,7 +11,6 @@
     };
     handleInputChange: (e: React.ChangeEvent<HTMLInputElement>, field: 'name' | 'email') => void;
   };
-  
   const BudgetClientInput: React.FC<BudgetClientInputProps> = ({
     clientName,
     setClientName,
@@ -37,7 +36,7 @@
         onChange={(e) => handleInputChange(e, 'email')}
         className={`form-input ${errors.email ? 'border-red-500' : ''}`}
       />
-</>
+    </>
   )
 }
 

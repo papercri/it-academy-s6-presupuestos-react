@@ -65,12 +65,12 @@ export function handleSaveBudget({
 }: SaveBudgetParams) {
   e.preventDefault();
 
+  // Validar el formulario si hay errores sale de la funcion y no guarda el presupuesto
+
   const newErrors = validateForm(clientName, clientEmail, selectedServices);
   setErrors(newErrors);
-
   if (Object.keys(newErrors).length > 0) return;
 
- 
   const discountedTotal = calculateTotal(selectedServices, pages, languages, services, isDiscountApplied);
 
   const newBudget: Budget = {
@@ -80,7 +80,7 @@ export function handleSaveBudget({
     services: selectedServices,
     total: discountedTotal,
   };
-
+  
   const updatedBudgets = [...budgets, newBudget];
   setBudgets(updatedBudgets);
   localStorage.setItem("budgets", JSON.stringify(updatedBudgets));

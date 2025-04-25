@@ -42,7 +42,8 @@ const ServiceItem: React.FC<ServiceItemProps> = ({
               {service.description}
             </span>
           </label>
-          {service.id === "web" ? (
+
+        {service.id === "web" ? (
           <span className="text-2xl font-bold text-right">
             {!discount && <span>{webPrice} €</span>}
             {discount && <span>
@@ -51,7 +52,9 @@ const ServiceItem: React.FC<ServiceItemProps> = ({
                 </span>
             }
           </span>
-          ) : (
+
+        ) : (
+
           <span className="text-2xl font-bold text-right">
             {!discount && <span>{service.price} €</span>}
             {discount && <span>
@@ -60,7 +63,7 @@ const ServiceItem: React.FC<ServiceItemProps> = ({
                 </span>
             }
           </span>
-)}
+        )}
 
           <input
             type="checkbox"
@@ -70,8 +73,7 @@ const ServiceItem: React.FC<ServiceItemProps> = ({
             onChange={onChange}
             className="form-checkbox justify-self-end"
           />
-           
-
+          
         </div>
       </div>
       {checked && service.id === "web" && setPages && setLanguages && (
@@ -82,7 +84,6 @@ const ServiceItem: React.FC<ServiceItemProps> = ({
           onLanguagesChange={setLanguages}
         />
       )}
-     
     </div>
   );
 }

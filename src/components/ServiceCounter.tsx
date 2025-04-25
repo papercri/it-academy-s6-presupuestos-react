@@ -1,10 +1,11 @@
-interface ServiceCounterProps {
-  id: string;
-  label: string;
-  value: number;
-  onChange: (value: number) => void;
-  infoButton?: React.ReactNode; 
-}
+
+  interface ServiceCounterProps {
+    id: string;
+    label: string;
+    value: number;
+    onChange: (value: number) => void;
+    infoButton?: React.ReactNode; 
+  }
 
   const ServiceCounter: React.FC<ServiceCounterProps> = ({ id, label, value, onChange, infoButton }) => {
     return (

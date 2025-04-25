@@ -38,10 +38,9 @@ const ServiceItemDetail: React.FC<ServiceItemDetailProps> = ({
             </button>
           }
         />
- 
       </div>
 
-      <div className="relative">
+      <div>
         <ServiceCounter
           id="languages"
           label="Número de idiomas:"
@@ -57,7 +56,6 @@ const ServiceItemDetail: React.FC<ServiceItemDetailProps> = ({
             </button>
           }
         />
- 
       </div>
 
       <Modal isOpen={isPagesModalOpen} onClose={() => setIsPagesModalOpen(false)}>

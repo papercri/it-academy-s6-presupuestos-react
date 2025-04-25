@@ -3,7 +3,6 @@ import HomePage from './pages/HomePage'
 import BudgetCalculator from './pages/BudgetCalculator'
 import ProgressBudgetPage from './pages/ProgressBudgetPage'
 
-
 function App() {
   return (
     <Routes>

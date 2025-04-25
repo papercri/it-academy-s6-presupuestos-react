@@ -14,7 +14,6 @@ const Switch = ({ onToggle }: SwitchProps) => {
   return (
     <section className='flex items-center justify-center pb-6 gap-6'>
         <p className='font-black pt-4'>Pago mensual</p>
-        
       <label>
       <input
           className="toggle-checkbox"
@@ -36,5 +35,4 @@ const Switch = ({ onToggle }: SwitchProps) => {
     </section>
   );
 }
-
 export default Switch;
