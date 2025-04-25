@@ -13,6 +13,7 @@ interface ServiceItemProps {
   setLanguages?: (value: number) => void;
   pages: number;
   languages: number;
+  discount: boolean;
 }
 
 const ServiceItem: React.FC<ServiceItemProps> = ({ 
@@ -22,7 +23,8 @@ const ServiceItem: React.FC<ServiceItemProps> = ({
   setPages,
   setLanguages,
   pages,
-  languages
+  languages,
+  discount
  }) => {
 
   return (
@@ -30,15 +32,21 @@ const ServiceItem: React.FC<ServiceItemProps> = ({
       <div>
         <div className="grid grid-cols-5 text-gray-800 gap-4  items-center justify-items-stretch ">
           <label htmlFor={service.id} className="flex flex-col gap-1 cursor-pointer col-span-3">
+          {discount && <span className=" text-selected font-bold">Ahorra un 20%</span>}
             <span className="text-xl font-bold ">
-              {service.name}
+              {service.name} 
             </span>
             <span className="text-sm text-gray-600">
               {service.description}
             </span>
           </label>
           <span className="text-2xl font-bold text-right">
-            {service.price} €
+            {!discount && <span>{service.price} €</span>}
+            {discount && <span>
+                <span className="line-through">{service.price}</span>
+                <span className=" text-selected font-bold"> €{(service.price * 0.8).toFixed(0)} </span>
+                </span>
+            }
           </span>
           <input
             type="checkbox"
@@ -48,6 +56,8 @@ const ServiceItem: React.FC<ServiceItemProps> = ({
             onChange={onChange}
             className="form-checkbox justify-self-end"
           />
+           
+
         </div>
       </div>
       {checked && service.id === "web" && setPages && setLanguages && (

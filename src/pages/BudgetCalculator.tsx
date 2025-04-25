@@ -6,6 +6,7 @@ function BudgetCalculator() {
   return (
     <>
         <Header></Header>
+        
         <BudgetLayout></BudgetLayout>
     </>
   )

@@ -1,0 +1,96 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
+import { Budget, ServiceState, SaveBudgetParams } from "../types/Interfaces";
+import { services } from "../data/services"; // Asegúrate de importar la lista de servicios
+
+export const validateForm = (
+  name: string,
+  email: string,
+  selectedServices: ServiceState
+): { name?: string; email?: string; services?: string } => {
+  const errors: { name?: string; email?: string; services?: string } = {};
+
+  if (name.trim().length < 2) {
+    errors.name = "El nombre es obligatorio.";
+  }
+  const clientEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!clientEmail.test(email)) {
+    errors.email = "El email no es válido.";
+  }
+  const selectedCount = Object.values(selectedServices).filter(service => service).length;
+  if (selectedCount === 0) {
+    errors.services = "Debes seleccionar al menos un servicio.";
+  }
+
+  return errors;
+};
+
+export const calculateTotal = (
+  selectedServices: ServiceState,
+  pages: number,
+  languages: number,
+  services: { id: keyof ServiceState; price: number }[],
+  isDiscountApplied: boolean
+): number => {
+  let newTotal = services.reduce((sum, service) => {
+    return selectedServices[service.id] ? sum + service.price : sum;
+  }, 0);
+  if (selectedServices.web) {
+    newTotal += (pages + languages) * 30;
+  }
+  if (isDiscountApplied) {
+    newTotal = newTotal * 0.8; // Aplica un 20% de descuento si está activado
+  }
+  return newTotal;
+};
+
+export function handleSaveBudget({
+  e,
+  clientName,
+  clientEmail,
+  selectedServices,
+  total,
+  budgets,
+  setBudgets,
+  setClientName,
+  setClientEmail,
+  setPages,
+  setLanguages,
+  setSelectedServices,
+  setErrors,
+  isDiscountApplied,
+}: SaveBudgetParams) {
+  e.preventDefault();
+
+  const newErrors = validateForm(clientName, clientEmail, selectedServices);
+  setErrors(newErrors);
+
+  if (Object.keys(newErrors).length > 0) return;
+
+  // Asegúrate de pasar los servicios a la función calculateTotal
+  const discountedTotal = calculateTotal(selectedServices, pages, languages, services, isDiscountApplied);
+
+  const newBudget: Budget = {
+    id: Date.now(),
+    client: clientName,
+    email: clientEmail,
+    services: selectedServices,
+    total: discountedTotal,
+  };
+
+  const updatedBudgets = [...budgets, newBudget];
+  setBudgets(updatedBudgets);
+  localStorage.setItem("budgets", JSON.stringify(updatedBudgets));
+
+  // Limpiar los valores después de guardar
+  setClientEmail("");
+  setClientName("");
+  setPages(0);
+  setLanguages(0);
+  setSelectedServices({
+    seo: false,
+    ads: false,
+    web: false,
+  });
+  setErrors({});
+}

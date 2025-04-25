@@ -16,7 +16,7 @@ interface ServiceCounterProps {
         <div className="flex items-center gap-2">
           <button
             type="button"
-            onClick={() => onChange(Math.max(value - 1, 0))}
+            onClick={() => onChange(Math.max(value - 1, 1))}
             className="btn-more-less"
           >
             -
@@ -25,7 +25,8 @@ interface ServiceCounterProps {
             id={id}
             type="number"
             value={value}
-            onChange={(e) => onChange(Number(e.target.value))}
+            min={1}
+            onChange={(e) => onChange(Math.max(Number(e.target.value), 1))}
             className="form-input w-[65px] text-center no-spinner border-0 shadow-none text-2xl text-selected font-extrabold"
           />
           <button

@@ -15,3 +15,22 @@ export interface Budget {
   total: number;
 };
 
+export interface SaveBudgetParams  {
+  e: React.FormEvent;
+  clientName: string;
+  clientEmail: string;
+  selectedServices: ServiceState;
+  total: number;
+  budgets: Budget[];
+  setBudgets: (budgets: Budget[]) => void;
+  setClientName: (name: string) => void;
+  setClientEmail: (email: string) => void;
+  setPages: (pages: number) => void;
+  setLanguages: (languages: number) => void;
+  setSelectedServices: (services: ServiceState) => void;
+  setErrors: (errors: { name?: string; email?: string; 
+  services?: string;
+
+}) => void;
+  
+}

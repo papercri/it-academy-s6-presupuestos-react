@@ -4,6 +4,7 @@ import {  Budget } from "../types/Interfaces";
 import { useState, useEffect } from "react";
 import { Link } from 'react-router-dom'
 
+
 function ProgressBudgetPage() {
   const [budgets, setBudgets] = useState<Budget[]>([]);
 
@@ -30,7 +31,6 @@ function ProgressBudgetPage() {
         <Header />
         <div className=" bg-gray-100 flex items-start justify-center p-6">
           <div className="max-w-xl w-full">
-
         
           <h3 className="my-6">Presupuestos en curso:</h3>
             <ProgressBudget 
