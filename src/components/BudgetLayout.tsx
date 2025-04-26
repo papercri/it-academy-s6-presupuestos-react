@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 import ServiceItem from "./ServiceItem";  
+import Modal from "./Modal";
 import BudgetClientInput from "./BudgetClientInput";
 import Switch from "./Switcher";
 import { useEffect, useState } from "react";
@@ -82,8 +83,11 @@ function BudgetLayout() {
     webPrice += (pages + languages) * 30;
   }
 
+//Modal confirmación de presupuesto añadido
+  const [isBudgetAddedModalOpen, setIsBudgetAddedModalOpen] = useState(false);
+
   return (
-    <main className=" flex items-start justify-center p-6">
+    <main className="flex items-start justify-center md:p-6 p-2">
       <div className="max-w-xl w-full">
         <h3 className="my-6">Solicita tu presupuesto:</h3>
         <Switch onToggle={handleToggleDiscount} />
@@ -100,15 +104,14 @@ function BudgetLayout() {
               languages={languages}
               discount={isDiscountApplied}
               webPrice={webPrice}
-             
             />
             
           ))}
           
-            <div className="my-6 text-xl font-semibold text-selected text-right">
+            <div className="my-6 text-xl font-semibold text-selected md:text-right text-center">
               Total presupuesto: {total} €
             </div>
-            <div className="card mb-4 grid grid-cols-3 justify-between items-center gap-2 p-4 bg-white shadow-md rounded-xl">
+            <div className="card mb-4 grid md:grid-cols-3 grid-cols md:justify-between justify-stretch items-center gap-2 p-4 bg-white shadow-md rounded-xl">
               <BudgetClientInput
                 clientEmail={clientEmail}
                 setClientEmail={setClientEmail}
@@ -136,11 +139,13 @@ function BudgetLayout() {
                     setSelectedServices,
                     setErrors,
                     isDiscountApplied,
-                    webPrice
+                    webPrice,
+                    isBudgetAddedModalOpen,
+                    setIsBudgetAddedModalOpen
                   })
                 }
-                className="btn-outline text-selected hover:text-white text-nowrap" >Solicitar presupuesto</button>
-              <div className="col-span-3">
+                className="btn-outline text-selected hover:text-white text-nowrap !md:w-auto !w-full" >Solicitar presupuesto</button>
+              <div className="md:col-span-3 md:text-left text-center">
               {errors.name && <p className="text-sm text-red-600 mt-1">{errors.name}</p>}
               {errors.email && <p className="text-sm text-red-600 mt-1">{errors.email}</p>}
               {errors.services && <p className="text-sm text-red-600 mt-1">{errors.services}</p>}
@@ -148,9 +153,17 @@ function BudgetLayout() {
           </div>
         </form>
         {budgets.length > 0 && (
-        <Link to="/progress" className='btn-outline !block mx-auto mt-8'>Ver todos los presupuestos en curso</Link>
+        <Link to="/progress" className='btn-outline !block mx-auto mt-8 mb-4  text-center '>Ver todos los presupuestos en curso</Link>
         )}
       </div>
+
+
+      <Modal isOpen={isBudgetAddedModalOpen} onClose={() => setIsBudgetAddedModalOpen(false)}>
+        <h2 className="text-xl font-bold mb-4">Tu presupuesto se ha agregado correctamente</h2>
+        <Link to="/progress" className='btn-outline !block mx-auto mt-8 mb-4  text-center '>Ver presupuestos</Link>
+      </Modal>
+
+
     </main>
     );
   }

@@ -44,22 +44,22 @@ const ServiceItem: React.FC<ServiceItemProps> = ({
           </label>
 
         {service.id === "web" ? (
-          <span className="text-2xl font-bold text-right">
+          <span className="text-xl font-bold text-right">
             {!discount && <span>{webPrice} €</span>}
             {discount && <span>
-                <span className="line-through">{service.price}</span>
-                <span className=" text-selected font-bold"> €{(webPrice * 0.8).toFixed(0)} </span>
+                <span className="line-through">{service.price}€</span><br />
+                <span className=" text-selected font-bold">{(webPrice * 0.8).toFixed(0)}€ </span>
                 </span>
             }
           </span>
 
         ) : (
 
-          <span className="text-2xl font-bold text-right">
-            {!discount && <span>{service.price} €</span>}
+          <span className="text-xl font-bold text-right">
+            {!discount && <span>{service.price}€</span>}
             {discount && <span>
-                <span className="line-through">{service.price}</span>
-                <span className=" text-selected font-bold"> €{(service.price * 0.8).toFixed(0)} </span>
+                <span className="line-through">{service.price}€</span><br />
+                <span className=" text-selected font-bold"> {(service.price * 0.8).toFixed(0)}€ </span>
                 </span>
             }
           </span>

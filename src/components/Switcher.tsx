@@ -12,8 +12,8 @@ const Switch = ({ onToggle }: SwitchProps) => {
         onToggle(newState);
     };
   return (
-    <section className='flex items-center justify-center pb-6 gap-6'>
-        <p className='font-black pt-4'>Pago mensual</p>
+    <section className='flex items-center justify-center pb-8 gap-8'>
+        <p className='font-black '>Pago mensual</p>
       <label>
       <input
           className="toggle-checkbox"
@@ -31,7 +31,7 @@ const Switch = ({ onToggle }: SwitchProps) => {
           </div>
         </div>
       </label>
-      <p className='font-black pt-4'>Pago anual</p>
+      <p className='font-black '>Pago anual</p>
     </section>
   );
 }

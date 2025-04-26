@@ -13,6 +13,7 @@ export interface Budget {
   email: string;
   services: ServiceState;
   total: number;
+  subscriptionType: 'anual' | 'mensual';
 };
 
 export interface SaveBudgetParams  {
@@ -36,6 +37,8 @@ export interface SaveBudgetParams  {
     services?: string;
   }) => void;
   isDiscountApplied: boolean;
-  webPrice: number;    
+  webPrice: number;   
+  isBudgetAddedModalOpen: boolean;
+  setIsBudgetAddedModalOpen: (isOpen: boolean) => void; 
 }
   

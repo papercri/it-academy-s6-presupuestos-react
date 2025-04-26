@@ -10,6 +10,7 @@ export const validateForm = (
 ): { name?: string; email?: string; services?: string } => {
   const errors: { name?: string; email?: string; services?: string } = {};
 
+ 
   if (name.trim().length < 2) {
     errors.name = "El nombre es obligatorio.";
   }
@@ -62,6 +63,9 @@ export function handleSaveBudget({
   setSelectedServices,
   setErrors,
   isDiscountApplied,
+  isBudgetAddedModalOpen,
+  setIsBudgetAddedModalOpen
+
 }: SaveBudgetParams) {
   e.preventDefault();
 
@@ -79,12 +83,14 @@ export function handleSaveBudget({
     email: clientEmail,
     services: selectedServices,
     total: discountedTotal,
+    subscriptionType: isDiscountApplied ? 'anual' : 'mensual',
   };
   
   const updatedBudgets = [...budgets, newBudget];
   setBudgets(updatedBudgets);
   localStorage.setItem("budgets", JSON.stringify(updatedBudgets));
 
+  setIsBudgetAddedModalOpen(true);
   setClientEmail("");
   setClientName("");
   setPages(0);

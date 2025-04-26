@@ -23,21 +23,21 @@ function ProgressBudgetLayout() {
       }
     };
     return (
-    <main className=" bg-gray-100 flex items-start justify-center p-6">
+    <main className=" bg-gray-100 flex items-start justify-center md:p-6 p-2">
       <div className="max-w-xl w-full">
         <h3 className="my-6">Presupuestos en curso:</h3>
         <ProgressBudgetItem 
         budgets={budgets} 
         handleDeleteBudget={handleDeleteBudget} 
         />
-        <div className='flex justify-center items-center mt-8 gap-4'>
+        <div className='flex justify-center items-center mt-8 gap-4 md:flex-row flex-col'>
           <button
               onClick={handleDeleteAll}
-              className="btn-danger"
+              className="btn-danger !md:w-auto !w-full text-center"
           >
               Borrar todos los presupuestos
           </button>
-          <Link to="/budget" className='btn-outline '>Calcular nuevo presupuesto</Link>
+          <Link to="/budget" className='btn-outline !md:w-auto !w-full text-center'>Calcular nuevo presupuesto</Link>
         </div>
       </div>
     </main>

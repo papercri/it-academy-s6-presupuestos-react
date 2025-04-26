@@ -10,7 +10,6 @@ interface ServiceItemDetailProps {
   onPagesChange: (value: number) => void;
   onLanguagesChange: (value: number) => void;
 }
-
 const ServiceItemDetail: React.FC<ServiceItemDetailProps> = ({
   pages,
   languages,
