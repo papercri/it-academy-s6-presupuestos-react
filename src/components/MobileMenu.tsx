@@ -4,7 +4,6 @@ import "../assets/styles/css/mobile-menu.css"
 
 export default function MobileMenu() {
     const [isOpen, setIsOpen] = useState(false);
-
     const toggleMenu = () => {
       setIsOpen(!isOpen);
     };
@@ -15,7 +14,6 @@ export default function MobileMenu() {
       <span></span>
       <span></span>
     </button>
-
     <nav className={`mobile-menu ${isOpen ? 'active' : ''}`}>
       <Link to="/" className='mobile-nav-link' onClick={toggleMenu}>Home</Link> 
       <Link to="/budget" className='mobile-nav-link' onClick={toggleMenu}>Calcular presupuesto</Link> 

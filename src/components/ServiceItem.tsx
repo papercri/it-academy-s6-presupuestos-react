@@ -1,4 +1,5 @@
 import ServiceItemDetail from "./ServiceItemDetail";  
+import { Tooltip } from 'react-tooltip'
 
 interface ServiceItemProps {
   service: {
@@ -30,7 +31,7 @@ const ServiceItem: React.FC<ServiceItemProps> = ({
  }) => {
 
   return (
-    <div className="flex flex-col gap-2 bg-white p-6 rounded-xl shadow-md">
+    <div className="card flex flex-col gap-2 bg-white p-6 rounded-xl shadow-md">
       <div>
         <div className="grid grid-cols-5 text-gray-800 gap-4  items-center justify-items-stretch ">
           <label htmlFor={service.id} className="flex flex-col gap-1 cursor-pointer col-span-3">
@@ -72,8 +73,9 @@ const ServiceItem: React.FC<ServiceItemProps> = ({
             checked={checked}
             onChange={onChange}
             className="form-checkbox justify-self-end"
+            data-tooltip-id="tooltip" data-tooltip-content="Seleccionar servicio"
           />
-          
+          <Tooltip id="tooltip" />
         </div>
       </div>
       {checked && service.id === "web" && setPages && setLanguages && (

@@ -91,7 +91,7 @@ function BudgetLayout() {
       <div className="max-w-xl w-full">
         <h3 className="my-6">Solicita tu presupuesto:</h3>
         <Switch onToggle={handleToggleDiscount} />
-        <form className="space-y-3">
+        <form className="space-y-4">
           {services.map((service) => (
             <ServiceItem
               key={service.id}
