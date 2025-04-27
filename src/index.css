@@ -94,6 +94,9 @@
     .col {
       @apply w-full px-2;
     }
+    .sticky {
+      @apply fixed top-0 w-full
+    }
   
     /* Espaciado genérico */
     .mb-section {
