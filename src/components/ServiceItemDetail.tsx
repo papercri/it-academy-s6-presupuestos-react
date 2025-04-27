@@ -30,7 +30,7 @@ const ServiceItemDetail: React.FC<ServiceItemDetailProps> = ({
           infoButton={
             <button
               onClick={() => setIsPagesModalOpen(true)}
-              className="btn-info"
+              className="btn-info "
               type="button"
             >
               <FontAwesomeIcon icon={faCircleInfo} />

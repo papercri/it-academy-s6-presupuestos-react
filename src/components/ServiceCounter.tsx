@@ -18,7 +18,7 @@
           <button
             type="button"
             onClick={() => onChange(Math.max(value - 1, 1))}
-            className="btn-more-less"
+            className="btn-more-less  relative "
           >
             -
           </button>
@@ -28,12 +28,12 @@
             value={value}
             min={1}
             onChange={(e) => onChange(Math.max(Number(e.target.value), 1))}
-            className="form-input w-[65px] text-center no-spinner border-0 shadow-none text-2xl text-selected font-extrabold"
+            className="form-input w-[65px] text-center no-spinner text-2xl text-selected font-extrabold outline-none border-0 shadow-none m-0 p-0 focus:ring-0"
           />
           <button
             type="button"
             onClick={() => onChange(value + 1)}
-            className="btn-more-less"
+            className="btn-more-less  relative "
           >
             +
           </button>

@@ -33,10 +33,10 @@ const ServiceItem: React.FC<ServiceItemProps> = ({
   return (
     <div className="card flex flex-col gap-2 bg-white p-6 rounded-xl shadow-md">
       <div>
-        <div className="grid grid-cols-5 text-gray-800 gap-4  items-center justify-items-stretch ">
-          <label htmlFor={service.id} className="flex flex-col gap-1 cursor-pointer col-span-3">
-          {discount && <span className=" text-selected font-bold">Ahorra un 20%</span>}
-            <span className="text-xl font-bold ">
+        <div className="grid grid-cols-4 text-gray-800 gap-4  items-center justify-items-stretch ">
+          <label htmlFor={service.id} className="flex flex-col gap-1 cursor-pointer col-span-2">
+
+            <span className="text-xl font-bold mb-2">
               {service.name} 
             </span>
             <span className="text-sm text-gray-600">
@@ -46,21 +46,23 @@ const ServiceItem: React.FC<ServiceItemProps> = ({
 
         {service.id === "web" ? (
           <span className="text-xl font-bold text-right">
-            {!discount && <span>{webPrice} €</span>}
+            {discount && <p className=" text-orange-600 font-bold text-xs mb-2 text-center text-nowrap">Ahorra un 20%</p>}
+            {!discount && <span className=" text-2xl font-bold">{webPrice} €</span>}
             {discount && <span>
-                <span className="line-through">{service.price}€</span><br />
-                <span className=" text-selected font-bold">{(webPrice * 0.8).toFixed(0)}€ </span>
+                <span className="line-through text-gray-600 mr-2">{service.price}€</span>
+                <span className=" text-2xl font-bold"> {(webPrice * 0.8).toFixed(0)}€ </span>
                 </span>
             }
           </span>
 
         ) : (
 
-          <span className="text-xl font-bold text-right">
-            {!discount && <span>{service.price}€</span>}
+          <span className="text-xl font-bold text-center">
+            {discount && <p className=" text-orange-600 font-bold text-xs mb-2 text-center text-nowrap">Ahorra un 20%</p>}
+            {!discount && <span className=" text-2xl font-bold">{service.price}€</span>}
             {discount && <span>
-                <span className="line-through">{service.price}€</span><br />
-                <span className=" text-selected font-bold"> {(service.price * 0.8).toFixed(0)}€ </span>
+                <span className="line-through text-gray-600 mr-2">{service.price}€</span>
+                <span className=" text-2xl font-bold"> {(service.price * 0.8).toFixed(0)}€ </span>
                 </span>
             }
           </span>
