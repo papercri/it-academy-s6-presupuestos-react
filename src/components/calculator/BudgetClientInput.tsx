@@ -23,7 +23,7 @@
     < >
       <input
         type="text"
-        placeholder="Nombre"
+        placeholder="Name"
         value={clientName}
         onChange={(e) => handleInputChange(e, 'name')}
         className={`form-input ${errors.name ? 'border-red-500' : ''}`}
@@ -31,7 +31,7 @@
       
       <input 
         type="text"
-        placeholder="Email"
+        placeholder="E-mail"
         value={clientEmail}
         onChange={(e) => handleInputChange(e, 'email')}
         className={`form-input ${errors.email ? 'border-red-500' : ''}`}

@@ -2,8 +2,8 @@
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import {  Budget } from "../types/Interfaces";
-import { services } from "../data/services";
+import {  Budget } from "../../types/Interfaces";
+import { services } from "../../data/services";
 import { Tooltip } from 'react-tooltip'
 
 interface ProgressBudgetProps {
@@ -25,12 +25,12 @@ const ProgressBudgetItem: React.FC<ProgressBudgetProps> = ({ budgets, handleDele
           return (
             <div key={budget.id} className="card mb-6  p-4 bg-white shadow-md rounded-xl flex flex-col">
               <div className="flex justify-between items-start gap-2">
-                <em className="text-sm text-selected font-bold">{budget.subscriptionType === 'anual' ? 'Suscripción anual (20% dto)' : 'Suscripción mensual'}</em>
+                <em className="text-sm text-selected font-bold">{budget.subscriptionType === 'anual' ? 'Annual subscription (20% discount)' : 'Monthly subscription'}</em>
               <div>
               <button 
                   onClick={() => handleDeleteBudget(budget.id)} 
                   className="btn-close"
-                  data-tooltip-id="tooltip" data-tooltip-content="Eliminar presupuesto"
+                  data-tooltip-id="tooltip" data-tooltip-content="Delete quote"
                 >
                   <FontAwesomeIcon icon={faXmark} />
                 </button>
@@ -44,7 +44,7 @@ const ProgressBudgetItem: React.FC<ProgressBudgetProps> = ({ budgets, handleDele
                   <em>{budget.email}</em>
                 </span> 
                 <span className="justify-self-center">
-                  <strong className="text-gray-600">Servicios</strong><br/> 
+                  <strong className="text-gray-600">Services</strong><br/> 
                   {selectedServiceNames.join(", ")}
                 </span> 
                 <span className="justify-self-end ">

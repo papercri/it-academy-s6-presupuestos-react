@@ -12,15 +12,15 @@ export const validateForm = (
 
  
   if (name.trim().length < 2) {
-    errors.name = "El nombre es obligatorio.";
+    errors.name = "Name is required.";
   }
   const clientEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!clientEmail.test(email)) {
-    errors.email = "El email no es válido.";
+    errors.email = "The e-mail is not valid.";
   }
   const selectedCount = Object.values(selectedServices).filter(service => service).length;
   if (selectedCount === 0) {
-    errors.services = "Debes seleccionar al menos un servicio.";
+    errors.services = "You must select at least one service.";
   }
 
   return errors;

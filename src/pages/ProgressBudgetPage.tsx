@@ -1,5 +1,5 @@
-import Header from '../components/Header'
-import ProgressBudgetLayout from '../components/ProgressBudgetLayout';
+import Header from '../components/ui/Header'
+import ProgressBudgetLayout from '../components/progress/ProgressBudgetLayout'
 
 function ProgressBudgetPage() {
   return (

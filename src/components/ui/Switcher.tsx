@@ -1,4 +1,4 @@
-import '../assets/styles/css/switch.css'
+import '../../assets/styles/css/switch.css'
 import { useState } from 'react';
 
 interface SwitchProps {
@@ -13,7 +13,7 @@ const Switch = ({ onToggle }: SwitchProps) => {
     };
   return (
     <section className='flex items-center justify-center pb-8 gap-8'>
-        <p className='font-black '>Pago mensual</p>
+        <p className='font-black '>Monthly payment</p>
       <label>
       <input
           className="toggle-checkbox"
@@ -31,7 +31,7 @@ const Switch = ({ onToggle }: SwitchProps) => {
           </div>
         </div>
       </label>
-      <p className='font-black '>Pago anual</p>
+      <p className='font-black '>Annual payment</p>
     </section>
   );
 }

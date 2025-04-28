@@ -1,5 +1,5 @@
 import ServiceCounter from "./ServiceCounter";
-import Modal from "./Modal";
+import Modal from "../ui/Modal";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleInfo } from "@fortawesome/free-solid-svg-icons";
@@ -24,7 +24,7 @@ const ServiceItemDetail: React.FC<ServiceItemDetailProps> = ({
       <div className="relative">
         <ServiceCounter
           id="pages"
-          label="Número de páginas:"
+          label="Number of pages:"
           value={pages}
           onChange={onPagesChange}
           infoButton={
@@ -42,7 +42,7 @@ const ServiceItemDetail: React.FC<ServiceItemDetailProps> = ({
       <div>
         <ServiceCounter
           id="languages"
-          label="Número de idiomas:"
+          label="Number of languages:"
           value={languages}
           onChange={onLanguagesChange}
           infoButton={
@@ -58,13 +58,13 @@ const ServiceItemDetail: React.FC<ServiceItemDetailProps> = ({
       </div>
 
       <Modal isOpen={isPagesModalOpen} onClose={() => setIsPagesModalOpen(false)}>
-        <h2 className="text-xl font-bold mb-4 ">Número de páginas</h2>
-        <p className="mb-4">Define cuántas páginas tendrá tu sitio web.</p>
+        <h2 className="text-xl font-bold mb-4 ">Number of pages</h2>
+        <p className="mb-4">Define how many pages your website will have.</p>
       </Modal>
 
       <Modal isOpen={isLanguagesModalOpen} onClose={() => setIsLanguagesModalOpen(false)}>
-        <h2 className="text-xl font-bold mb-4">Número de idiomas</h2>
-        <p className="mb-4">Selecciona cuántos idiomas incluirás en el sitio web.</p>
+        <h2 className="text-xl font-bold mb-4">Number of languages</h2>
+        <p className="mb-4">Define how many languages your website will have.</p>
       </Modal>
     </div>
   );

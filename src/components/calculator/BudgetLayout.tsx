@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 import ServiceItem from "./ServiceItem";  
-import Modal from "./Modal";
+import Modal from "../ui/Modal";
 import BudgetClientInput from "./BudgetClientInput";
-import Switch from "./Switcher";
+import Switch from "../ui/Switcher";
 import { useEffect, useState } from "react";
-import { services } from "../data/services";
-import { Budget, ServiceState } from "../types/Interfaces";
+import { services } from "../../data/services";
+import { Budget, ServiceState } from "../../types/Interfaces";
 import { Link } from 'react-router-dom'
-import {  calculateTotal, validateForm, handleSaveBudget } from "../utils/budgetHelpers";
+import {  calculateTotal, validateForm, handleSaveBudget } from "../../utils/budgetHelpers";
 
 function BudgetLayout() {
   const [selectedServices, setSelectedServices] = useState<ServiceState>({
@@ -89,7 +89,7 @@ function BudgetLayout() {
   return (
     <main className="flex items-start justify-center md:p-6 p-2">
       <div className="max-w-xl w-full">
-        <h3 className="my-6">Solicita tu presupuesto:</h3>
+        <h3 className="my-6">Request your budget:</h3>
         <Switch onToggle={handleToggleDiscount} />
         <form className="space-y-4">
           {services.map((service) => (
@@ -109,7 +109,7 @@ function BudgetLayout() {
           ))}
           
             <div className="my-6 text-xl font-semibold text-selected md:text-right text-center">
-              Total presupuesto: {total} €
+            Total budget: {total} €
             </div>
             <div className="card mb-4 grid md:grid-cols-3 grid-cols md:justify-between justify-stretch items-center gap-2 p-4 bg-white shadow-md rounded-xl">
               <BudgetClientInput
@@ -144,7 +144,7 @@ function BudgetLayout() {
                     setIsBudgetAddedModalOpen
                   })
                 }
-                className="btn-outline text-selected hover:text-white text-nowrap !md:w-auto !w-full" >Solicitar presupuesto</button>
+                className="btn-outline text-selected hover:text-white text-nowrap !md:w-auto !w-full" >Request quote</button>
               <div className="md:col-span-3 md:text-left text-center">
               {errors.name && <p className="text-sm text-red-600 mt-1">{errors.name}</p>}
               {errors.email && <p className="text-sm text-red-600 mt-1">{errors.email}</p>}
@@ -153,14 +153,15 @@ function BudgetLayout() {
           </div>
         </form>
         {budgets.length > 0 && (
-        <Link to="/progress" className='btn-outline !block mx-auto mt-8 mb-4  text-center '>Ver todos los presupuestos en curso</Link>
+        <Link to="/progress" className='btn-outline !block mx-auto mt-8 mb-4  text-center '>View all current budgets</Link>
         )}
       </div>
 
 
       <Modal isOpen={isBudgetAddedModalOpen} onClose={() => setIsBudgetAddedModalOpen(false)}>
-        <h2 className="text-xl font-bold mb-4">Tu presupuesto se ha agregado correctamente</h2>
-        <Link to="/progress" className='btn-outline !block mx-auto mt-8 mb-4  text-center '>Ver presupuestos</Link>
+        <h2 className="text-xl font-bold mb-4">Your quote has been added successfully</h2>
+        <Link to="/progress" className='btn-outline !block mx-auto mt-8 mb-4  text-center '>
+        See quotes</Link>
       </Modal>
 
 

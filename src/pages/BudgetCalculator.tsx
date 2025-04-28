@@ -1,6 +1,6 @@
 
-import Header from '../components/Header'
-import BudgetLayout from '../components/BudgetLayout'
+import Header from '../components/ui/Header'
+import BudgetLayout from '../components/calculator/BudgetLayout'
 
 function BudgetCalculator() {
   return (

@@ -1,5 +1,5 @@
-import ProgressBudgetItem from './ProgressBudgetItem';  
-import {  Budget } from "../types/Interfaces";
+import ProgressBudgetItem from "./ProgressBudgetItem";
+import {  Budget } from "../../types/Interfaces";
 import { useState, useEffect } from "react";
 import { Link } from 'react-router-dom'
 
@@ -17,7 +17,7 @@ function ProgressBudgetLayout() {
       localStorage.setItem('budgets', JSON.stringify(updatedBudgets));
     };
     const handleDeleteAll = () => {
-      if (confirm("¿Estás seguro de que quieres borrar todos los presupuestos?")) {
+      if (confirm("Are you sure you want to delete all quotes?")) {
         setBudgets([]);
         localStorage.removeItem("budgets");
       }
@@ -25,7 +25,10 @@ function ProgressBudgetLayout() {
     return (
     <main className=" bg-gray-100 flex items-start justify-center md:p-6 p-2">
       <div className="max-w-xl w-full">
-        <h3 className="my-6">Presupuestos en curso:</h3>
+        <h3 className="my-6">Current budgets:</h3>
+        <div className='filters'>
+
+        </div>
         <ProgressBudgetItem 
         budgets={budgets} 
         handleDeleteBudget={handleDeleteBudget} 
@@ -35,9 +38,9 @@ function ProgressBudgetLayout() {
               onClick={handleDeleteAll}
               className="btn-danger !md:w-auto !w-full text-center"
           >
-              Borrar todos los presupuestos
+             Delete all budgets
           </button>
-          <Link to="/budget" className='btn-outline !md:w-auto !w-full text-center'>Calcular nuevo presupuesto</Link>
+          <Link to="/budget" className='btn-outline !md:w-auto !w-full text-center'>Calculate new budget</Link>
         </div>
       </div>
     </main>

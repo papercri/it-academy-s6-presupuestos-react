@@ -1,4 +1,4 @@
-import ServiceItemDetail from "./ServiceItemDetail";  
+import ServiceItemDetail from "./ServiceItemDetail";
 import { Tooltip } from 'react-tooltip'
 
 interface ServiceItemProps {
@@ -46,7 +46,7 @@ const ServiceItem: React.FC<ServiceItemProps> = ({
 
         {service.id === "web" ? (
           <span className="text-xl font-bold text-right">
-            {discount && <p className=" text-orange-600 font-bold text-xs mb-2 text-center text-nowrap">Ahorra un 20%</p>}
+            {discount && <p className=" text-orange-600 font-bold text-xs mb-2 text-center text-nowrap">Save 20%</p>}
             {!discount && <span className=" text-2xl font-bold">{webPrice} €</span>}
             {discount && <span>
                 <span className="line-through text-gray-600 mr-2">{service.price}€</span>
@@ -58,7 +58,7 @@ const ServiceItem: React.FC<ServiceItemProps> = ({
         ) : (
 
           <span className="text-xl font-bold text-center">
-            {discount && <p className=" text-orange-600 font-bold text-xs mb-2 text-center text-nowrap">Ahorra un 20%</p>}
+            {discount && <p className=" text-orange-600 font-bold text-xs mb-2 text-center text-nowrap">Save 20%</p>}
             {!discount && <span className=" text-2xl font-bold">{service.price}€</span>}
             {discount && <span>
                 <span className="line-through text-gray-600 mr-2">{service.price}€</span>
@@ -75,7 +75,7 @@ const ServiceItem: React.FC<ServiceItemProps> = ({
             checked={checked}
             onChange={onChange}
             className="form-checkbox justify-self-end"
-            data-tooltip-id="tooltip" data-tooltip-content="Seleccionar servicio"
+            data-tooltip-id="tooltip" data-tooltip-content="Select service"
           />
           <Tooltip id="tooltip" />
         </div>
