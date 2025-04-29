@@ -9,6 +9,8 @@ import { services } from "../../data/services";
 import { Budget, ServiceState } from "../../types/Interfaces";
 import { Link } from 'react-router-dom'
 import {  calculateTotal, validateForm, handleSaveBudget } from "../../utils/budgetHelpers";
+import { useSearchParams } from "react-router-dom";
+
 
 function BudgetLayout() {
   const [selectedServices, setSelectedServices] = useState<ServiceState>({
@@ -17,6 +19,7 @@ function BudgetLayout() {
     web: false,
   });
 
+  const [searchParams] = useSearchParams();
   const [total, setTotal] = useState(0);
   const [pages, setPages] = useState(1);
   const [languages, setLanguages] = useState(1);
@@ -28,6 +31,36 @@ function BudgetLayout() {
   });
   const [isDiscountApplied, setIsDiscountApplied] = useState(false);
   const [errors, setErrors] = useState<{ name?: string; email?: string; services?: string }>({});
+
+
+  //Función para obtener los parámetros de búsqueda de la URL y establecer los valores iniciales
+  // ej url: /budget?name=cris&email=cris@cris.com&seo=true&web=true&ads=false&discount=true&pages=3&languages=2
+
+  useEffect(() => {
+    const name = searchParams.get("name");
+    const email = searchParams.get("email");
+    const seo = searchParams.get("seo") === "true";
+    const ads = searchParams.get("ads") === "true";
+    const web = searchParams.get("web") === "true";
+    const discount = searchParams.get("discount") === "true";
+    const pagesParam = searchParams.get("pages");
+    const languagesParam = searchParams.get("languages");
+  
+    if (name) setClientName(name);
+    if (email) setClientEmail(email);
+    if (pagesParam) setPages(parseInt(pagesParam));
+    if (languagesParam) setLanguages(parseInt(languagesParam));
+    
+    setSelectedServices({
+      seo,
+      ads,
+      web,
+    });
+  
+    setIsDiscountApplied(discount);
+  }, [searchParams]);
+
+
 
   //Función para calcular el total del presupuesto
 

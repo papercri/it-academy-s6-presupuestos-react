@@ -58,8 +58,8 @@ function ProgressBudgetLayout() {
       <div className="max-w-xl w-full">
         <h3 className="my-6">Current budgets:</h3>
 
-        <div className="grid grid-cols-5 md:grid-cols-3 justify-items-stretch justify-around md:gap-4 gap-1 mb-6 ">
-          <div>
+        <div className="grid grid-cols-10 md:grid-cols-3 justify-items-stretch justify-around md:gap-4 gap-0.5 mb-6 ">
+          <div className="col-span-4 md:col-span-1">
             <input 
               type="text"
               placeholder="search..."
@@ -68,17 +68,17 @@ function ProgressBudgetLayout() {
               className="form-input shadow-none py-1.5 border-3 border-[var(--color-selected)] ring-0 text-[var(--color-selected)] font-bold focus:bg-slate-200"
             />
           </div>
-          <div className="col-span-2">
+          <div className="col-span-3 md:col-span-1">
             <SortButton
               onClick={handleSortByName}
-              label="Sort by Name"
+              label="By Name"
               isAsc={nameOrder}
             />
           </div>
-          <div  className="col-span-2">
+          <div  className="col-span-3 md:col-span-1">
             <SortButton
               onClick={handleSortByDate}
-              label="Sort by Date"
+              label="By Date"
               isAsc={dateOrder}
             />
           </div>
