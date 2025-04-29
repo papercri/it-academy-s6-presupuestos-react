@@ -1,15 +1,23 @@
-# Web Budget Calculator App
+# React Budget Calculator
 
-This is a React application built to streamline the process of calculating website project budgets. It improves user interaction compared to previous static versions by utilizing checkboxes, inputs, buttons, tooltips, modals, and live form validation.
+A responsive and scalable budget calculator built with **React**, **TailwindCSS**, and **React Router**.  
+This app aims to streamline the process of estimating website development costs based on selected services, using a more interactive interface than traditional forms.
 
-## 🚀 Live Features
+🌐 **Live Demo**: [react-budget-calculator.vercel.app](https://react-budget-calculator-drab.vercel.app/)
 
-- Built with **React**, **TailwindCSS**, **React Router**, `useEffect`, `useState`, and `localStorage`.
-- Functional, reusable, and responsive components.
-- Real-time total updates based on user selections.
-- Tooltip explanations and modals for user guidance and confirmation.
-- Form validation while the form is being used (not just on submit).
-- Budgets saved persistently in `localStorage`.
+---
+
+## 🛠 Tech Stack
+
+- React + Vite
+- TypeScript
+- TailwindCSS
+- React Router DOM
+- Local Storage
+- useEffect, useState, useSearchParams
+- Aesthetic UI with tooltips, modals, and real-time validation
+
+---
 
 ## 🔧 Installation
 
