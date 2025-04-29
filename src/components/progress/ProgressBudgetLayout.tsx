@@ -23,8 +23,8 @@ function ProgressBudgetLayout() {
       }
     
       const search = searchParams.get('search') || '';
-      const sortName = searchParams.get('sortName') === 'asc'; // true si ?sortName=asc
-      const sortDate = searchParams.get('sortDate') === 'asc'; // true si ?sortDate=asc
+      const sortName = searchParams.get('sortName') === 'asc'; 
+      const sortDate = searchParams.get('sortDate') === 'asc'; 
     
       setSearchTerm(search);
       setNameOrder(sortName);
