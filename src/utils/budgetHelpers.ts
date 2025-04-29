@@ -51,7 +51,6 @@ export function handleSaveBudget({
   clientName,
   clientEmail,
   selectedServices,
-  total,
   budgets,
   setBudgets,
   setClientName,
@@ -63,7 +62,6 @@ export function handleSaveBudget({
   setSelectedServices,
   setErrors,
   isDiscountApplied,
-  isBudgetAddedModalOpen,
   setIsBudgetAddedModalOpen
 
 }: SaveBudgetParams) {

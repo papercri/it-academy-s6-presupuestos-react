@@ -13,9 +13,7 @@
   };
   const BudgetClientInput: React.FC<BudgetClientInputProps> = ({
     clientName,
-    setClientName,
     clientEmail,
-    setClientEmail,
     errors,
     handleInputChange,
   }) => {

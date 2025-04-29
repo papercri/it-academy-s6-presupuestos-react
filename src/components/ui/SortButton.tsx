@@ -1,5 +1,4 @@
 // src/components/SortButton.tsx
-import React from "react";
 
 interface SortButtonProps {
   onClick: () => void;
