@@ -58,25 +58,30 @@ function ProgressBudgetLayout() {
       <div className="max-w-xl w-full">
         <h3 className="my-6">Current budgets:</h3>
 
-        <div className="flex justify-start gap-4 mb-6 flex-wrap">
-          <SortButton
-            onClick={handleSortByName}
-            label="Sort by Name"
-            isAsc={nameOrder}
-          />
-          <SortButton
-            onClick={handleSortByDate}
-            label="Sort by Date"
-            isAsc={dateOrder}
-          />
-
-          <input 
-            type="text"
-            placeholder="search..."
-            value={searchTerm}
-            onChange={(e) => handleInputChange(e)}
-            className="form-input w-auto py-0"
-          />
+        <div className="grid grid-cols-5 md:grid-cols-3 justify-items-stretch justify-around md:gap-4 gap-1 mb-6 ">
+          <div>
+            <input 
+              type="text"
+              placeholder="search..."
+              value={searchTerm}
+              onChange={(e) => handleInputChange(e)}
+              className="form-input shadow-none py-1.5 border-3 border-[var(--color-selected)] ring-0 text-[var(--color-selected)] font-bold focus:bg-slate-200"
+            />
+          </div>
+          <div className="col-span-2">
+            <SortButton
+              onClick={handleSortByName}
+              label="Sort by Name"
+              isAsc={nameOrder}
+            />
+          </div>
+          <div  className="col-span-2">
+            <SortButton
+              onClick={handleSortByDate}
+              label="Sort by Date"
+              isAsc={dateOrder}
+            />
+          </div>
         </div>
 
         <ProgressBudgetItem 

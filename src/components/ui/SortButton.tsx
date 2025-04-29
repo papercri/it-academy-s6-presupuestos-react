@@ -11,7 +11,7 @@ function SortButton({ onClick, label, isAsc }: SortButtonProps) {
   return (
     <button
       onClick={onClick}
-      className="btn-outline"
+      className="btn-outline !w-full"
     >
       {label} {isAsc ? "↑" : "↓"}
     </button>
