@@ -3,13 +3,37 @@ import {  Budget } from "../../types/Interfaces";
 import { useState, useEffect } from "react";
 import { Link } from 'react-router-dom'
 import SortButton from  "../ui/SortButton";
-
+import { useSearchParams } from 'react-router-dom';
 
 function ProgressBudgetLayout() {
+    const [searchParams] = useSearchParams();
     const [budgets, setBudgets] = useState<Budget[]>([]);
     const [nameOrder, setNameOrder] = useState(false);  
     const [dateOrder, setDateOrder] = useState(false);  
     const [searchTerm, setSearchTerm] = useState('');
+
+
+    //Función para obtener los parámetros de búsqueda de la URL y establecer los valores iniciales
+    // ej url: /progress?search=cris&sortName=asc&sortDate=asc
+
+    useEffect(() => {
+      const storedBudgets = localStorage.getItem('budgets');
+      if (storedBudgets) {
+        setBudgets(JSON.parse(storedBudgets));
+      }
+    
+      const search = searchParams.get('search') || '';
+      const sortName = searchParams.get('sortName') === 'asc'; // true si ?sortName=asc
+      const sortDate = searchParams.get('sortDate') === 'asc'; // true si ?sortDate=asc
+    
+      setSearchTerm(search);
+      setNameOrder(sortName);
+      setDateOrder(sortDate);
+    
+      if (sortName) handleSortByName();
+      else if (sortDate) handleSortByDate();
+    }, []);
+
 
     useEffect(() => {
       const storedBudgets = localStorage.getItem('budgets');
@@ -62,7 +86,7 @@ function ProgressBudgetLayout() {
           <div className="col-span-4 md:col-span-1">
             <input 
               type="text"
-              placeholder="search..."
+              placeholder="Search..."
               value={searchTerm}
               onChange={(e) => handleInputChange(e)}
               className="form-input shadow-none py-1.5 border-3 border-[var(--color-selected)] ring-0 text-[var(--color-selected)] font-bold focus:bg-slate-200"
