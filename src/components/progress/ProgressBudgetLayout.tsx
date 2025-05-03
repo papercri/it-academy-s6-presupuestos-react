@@ -17,26 +17,27 @@ function ProgressBudgetLayout() {
     // ej url: /progress?search=cris&sortName=asc&sortDate=asc
 
     useEffect(() => {
-   
-      const search = searchParams.get('search') || '';
-      const sortName = searchParams.get('sortName') === 'asc'; 
-      const sortDate = searchParams.get('sortDate') === 'asc'; 
-    
-      setSearchTerm(search);
-      setNameOrder(sortName);
-      setDateOrder(sortDate);
-    
-      if (sortName) handleSortByName();
-      else if (sortDate) handleSortByDate();
-    }, []);
-
-
-    useEffect(() => {
-      const storedBudgets = localStorage.getItem('budgets');
+      const storedBudgets = localStorage.getItem("budgets");
       if (storedBudgets) {
-        setBudgets(JSON.parse(storedBudgets));
+        const parsedBudgets = JSON.parse(storedBudgets);
+        setBudgets(parsedBudgets);
+    
+        const sortName = searchParams.get("sortName") === "asc";
+        const sortDate = searchParams.get("sortDate") === "asc";
+    
+        if (sortName) {
+          setBudgets([...parsedBudgets].sort((a, b) => a.client.localeCompare(b.client)));
+          setNameOrder(true);
+        } else if (sortDate) {
+          setBudgets([...parsedBudgets].sort((a, b) => a.id - b.id));
+          setDateOrder(true);
+        }
       }
+    
+      const search = searchParams.get("search") || "";
+      setSearchTerm(search);
     }, []);
+    
     const handleDeleteBudget = (id: number) => {
       const updatedBudgets = budgets.filter((budget) => budget.id !== id);
       setBudgets(updatedBudgets);
