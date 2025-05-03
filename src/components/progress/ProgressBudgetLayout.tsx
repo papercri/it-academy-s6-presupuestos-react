@@ -17,11 +17,7 @@ function ProgressBudgetLayout() {
     // ej url: /progress?search=cris&sortName=asc&sortDate=asc
 
     useEffect(() => {
-      const storedBudgets = localStorage.getItem('budgets');
-      if (storedBudgets) {
-        setBudgets(JSON.parse(storedBudgets));
-      }
-    
+   
       const search = searchParams.get('search') || '';
       const sortName = searchParams.get('sortName') === 'asc'; 
       const sortDate = searchParams.get('sortDate') === 'asc'; 

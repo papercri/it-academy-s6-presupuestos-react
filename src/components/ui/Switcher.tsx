@@ -3,7 +3,10 @@ import { useState } from 'react';
 
 interface SwitchProps {
   onToggle: (isChecked: boolean) => void;
+
+
 }
+
 const Switch = ({ onToggle }: SwitchProps) => {
     const [isChecked, setIsChecked] = useState(false);
     const handleToggle = () => {
@@ -32,6 +35,7 @@ const Switch = ({ onToggle }: SwitchProps) => {
         </div>
       </label>
       <p className='font-black '>Annual payment</p>
+
     </section>
   );
 }
