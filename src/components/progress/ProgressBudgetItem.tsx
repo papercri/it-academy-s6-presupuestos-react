@@ -1,17 +1,18 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import {  Budget } from "../../types/Interfaces";
+import { faXmark, faEye } from "@fortawesome/free-solid-svg-icons";
+import { Budget } from "../../types/Interfaces";
 import { services } from "../../data/services";
 import { Tooltip } from 'react-tooltip'
+
 
 interface ProgressBudgetProps {
   budgets: Budget[];
   handleDeleteBudget: (id: number) => void;
+  onOpenModal: (budget: Budget) => void;
 }
-
-const ProgressBudgetItem: React.FC<ProgressBudgetProps> = ({ budgets, handleDeleteBudget }) => {
+const ProgressBudgetItem: React.FC<ProgressBudgetProps> = ({ budgets, handleDeleteBudget, onOpenModal }) => {
     return (
     <div>
       <div>
@@ -40,7 +41,14 @@ const ProgressBudgetItem: React.FC<ProgressBudgetProps> = ({ budgets, handleDele
               </div>
               <div className="grid grid-cols-4 gap-2 justify-between">
                 <span className="col-span-2">
-                  <strong className="capitalize">{budget.client}</strong><br/>
+                  <strong className="capitalize">{budget.client}</strong> <button onClick={() => 
+                onOpenModal(budget)}
+                data-tooltip-id="tooltip" 
+                data-tooltip-content="View details"
+                className=" hover:text-selected text-lg text-gray-600 ml-2"
+              >
+                  <FontAwesomeIcon icon={faEye} />
+              </button><br/>
                   <em>{budget.email}</em>
                 </span> 
                 <span className="justify-self-center">
@@ -52,6 +60,7 @@ const ProgressBudgetItem: React.FC<ProgressBudgetProps> = ({ budgets, handleDele
                   <strong className="text-2xl">{budget.total}€</strong>
                 </span>
               </div>
+             
             </div>
         );
       })}

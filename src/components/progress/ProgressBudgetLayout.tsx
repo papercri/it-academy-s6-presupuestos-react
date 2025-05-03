@@ -1,9 +1,11 @@
 import ProgressBudgetItem from "./ProgressBudgetItem";
 import {  Budget } from "../../types/Interfaces";
 import { useState, useEffect } from "react";
-import { Link } from 'react-router-dom'
 import SortButton from  "../ui/SortButton";
-import { useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
+import Modal from "../ui/Modal";
+import BudgetCard from "./BudgetCard";
+import { ToastContainer, toast } from 'react-toastify';
 
 function ProgressBudgetLayout() {
     const [searchParams] = useSearchParams();
@@ -11,7 +13,8 @@ function ProgressBudgetLayout() {
     const [nameOrder, setNameOrder] = useState(false);  
     const [dateOrder, setDateOrder] = useState(false);  
     const [searchTerm, setSearchTerm] = useState('');
-
+    const [selectedBudget, setSelectedBudget] = useState<Budget | null>(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     //Función para obtener los parámetros de búsqueda de la URL y establecer los valores iniciales
     // ej url: /progress?search=cris&sortName=asc&sortDate=asc
@@ -21,9 +24,19 @@ function ProgressBudgetLayout() {
       if (storedBudgets) {
         const parsedBudgets = JSON.parse(storedBudgets);
         setBudgets(parsedBudgets);
+        const id = searchParams.get('id');
+          if (id) {
+            const budget = parsedBudgets.find((b: Budget) => b.id === Number(id));
+            if (budget) {
+              setSelectedBudget(budget);
+              setIsModalOpen(true);
+            }
+          }
     
         const sortName = searchParams.get("sortName") === "asc";
         const sortDate = searchParams.get("sortDate") === "asc";
+        const search = searchParams.get("search") || "";
+        setSearchTerm(search);
     
         if (sortName) {
           setBudgets([...parsedBudgets].sort((a, b) => a.client.localeCompare(b.client)));
@@ -33,22 +46,53 @@ function ProgressBudgetLayout() {
           setDateOrder(true);
         }
       }
-    
-      const search = searchParams.get("search") || "";
-      setSearchTerm(search);
+
     }, []);
     
+    const handleOpenModal = (budget: Budget) => {
+      setSelectedBudget(budget);
+      setIsModalOpen(true);
+    };
+    
+    const handleShareURL = () => {
+      if (!selectedBudget) return;
+      const url = `${window.location.origin}/progress?search=${selectedBudget.client}`;
+      navigator.clipboard.writeText(url);
+      toast("URL copied to clipboard!");
+    };
+
     const handleDeleteBudget = (id: number) => {
       const updatedBudgets = budgets.filter((budget) => budget.id !== id);
       setBudgets(updatedBudgets);
       localStorage.setItem('budgets', JSON.stringify(updatedBudgets));
     };
+    
     const handleDeleteAll = () => {
-      if (confirm("Are you sure you want to delete all quotes?")) {
-        setBudgets([]);
-        localStorage.removeItem("budgets");
-        
-      };
+      toast.info(
+        <div>
+          <p>Are you sure you want to delete all quotes?</p>
+          <div className="flex justify-end gap-2 mt-2">
+            <button
+              onClick={() => {
+                setBudgets([]);
+                localStorage.removeItem("budgets");
+                toast.dismiss();
+                toast.success("All budgets deleted!");
+              }}
+              className="text-white bg-red-600 px-3 py-1 rounded"
+            >
+              Yes
+            </button>
+            <button
+              onClick={() => toast.dismiss()}
+              className="text-gray-700 bg-gray-200 px-3 py-1 rounded"
+            >
+              No
+            </button>
+          </div>
+        </div>,
+        { autoClose: false }
+      );
     };
     const handleSortByName = () => {
       const sorted = [...budgets].sort((a, b) => {
@@ -108,6 +152,7 @@ function ProgressBudgetLayout() {
         <ProgressBudgetItem 
           budgets={filteredBudgets} 
           handleDeleteBudget={handleDeleteBudget} 
+          onOpenModal={handleOpenModal}
         />
         <div className='flex justify-center items-center mt-8 gap-4 md:flex-row flex-col'>
           <button
@@ -119,6 +164,16 @@ function ProgressBudgetLayout() {
           <Link to="/budget" className='btn-outline !md:w-auto !w-full text-center'>Calculate new budget</Link>
         </div>
       </div>
+
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        {selectedBudget && (
+          <BudgetCard
+            budget={selectedBudget}
+            onShare={handleShareURL}
+          />
+        )}
+      </Modal>
+      <ToastContainer position="top-center" autoClose={1000} />
     </main>
     )
   }

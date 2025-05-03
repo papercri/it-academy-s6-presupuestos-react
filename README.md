@@ -42,6 +42,8 @@ npm run dev
 - Displays all saved budgets.
 - Search by client name.
 - Sort by client name or date (ascending/descending).
+- View budget details in a modal.
+- Share budget via a copy-to-clipboard URL button.
 - Delete individual budgets or clear all.
 - Filters can be preset via URL:
   ```bash
